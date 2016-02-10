@@ -50,8 +50,6 @@ public class Main {
 
             initDB();
 
-
-
             //
 
             String menuSelection;
@@ -77,8 +75,11 @@ public class Main {
 
 
         } catch (SQLException e) {
+
             ui.displayError(e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage());
+
         } finally {
+
             if (conn != null) {
                 try {
                     conn.close();
@@ -86,6 +87,7 @@ public class Main {
                     ui.displayError("Failed to close database - " + e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage());
                 }
             }
+            
         }
 
 

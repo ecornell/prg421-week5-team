@@ -1,7 +1,7 @@
 /**
- * Title:          Week 3 - Iterator (Animal Collection)
+ * Title:          Week 4 - JDBC
  * Author:         Elijah Cornell
- * Creation Date:  2016-02-01
+ * Creation Date:  2016-02-09
  * Class:          PRG/421 - Roland Morales
  */
 
