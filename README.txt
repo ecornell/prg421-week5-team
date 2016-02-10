@@ -12,11 +12,17 @@ Key parts:
 Must demonstrate the use JDBC
 
 Program Flow:
- ->
- ->
+-> Init DB
+---> Establishes connection
+---> Creates and populates animal table if not present
+-> Display Menu
+---> Display Characteristics
+-----> Read and display all rows on animal table
+-----> Prompt for single animal to view
+-----> Read and display info on a selected animal row
 
 Input: animals.txt file
 Output: Console
 
 
-To Run: java -cp .\out\production\Week4 Main
+To Run: java -cp .\lib\derby.jar;.\out\production\Week4 Main

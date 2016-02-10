@@ -3,18 +3,24 @@
  * Author:         Elijah Cornell
  * Creation Date:  2016-02-09
  * Class:          PRG/421 - Roland Morales
- * <p/>
+ *
  * Key parts:
  * - Write a list of animal and its characteristics to a database using JDBC
  * - Display the characteristics of an animal when that animal is selected.
- * <p/>
+ *
  * Must demonstrate the use JDBC
- * <p/>
+ *
  * Program Flow:
- * ->
- * ->
- * <p/>
- * Input: animals.txt file
+ * -> Init DB
+ * ---> Establishes connection
+ * ---> Creates and populates animal table if not present
+ * -> Display Menu
+ * ---> Display Characteristics
+ * -----> Read and display all rows on animal table
+ * -----> Prompt for single animal to view
+ * -----> Read and display info on a selected animal row
+ *
+ * Input: Derby database ir present
  * Output: Console
  */
 
@@ -90,11 +96,9 @@ public class Main {
 
         ui.displayTitle("Animal Listing");
 
-        List<Animal> animalList = new ArrayList<>();
+        // Display numbered listing of all animals within DB
 
-        loadAnimalsFromDB(animalList);
-
-        //
+        List<Animal> animalList = loadAnimalsFromDB();
 
         int s = 1;
         for (Animal animal : animalList) {
@@ -116,7 +120,7 @@ public class Main {
 
         } while (inputNumber == 0);
 
-        //
+        // Query animal table by name and  display the returned information
 
         ui.displayTitle("Animal Characteristics");
 
@@ -189,9 +193,9 @@ public class Main {
     }
 
 
-    private void loadAnimalsFromDB(List<Animal> animalList) {
+    private List<Animal> loadAnimalsFromDB() {
 
-        animalList.clear();
+        List<Animal> animalList = new ArrayList<>();
 
         String createString = "select name, color, swim, fly, vertebrate from animal";
 
@@ -217,6 +221,8 @@ public class Main {
         } catch (SQLException e) {
             ui.displayError(e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage());
         }
+
+        return animalList;
 
     }
 

@@ -1,2 +1,2 @@
 @echo off
-java -cp .\out\production\Week4 Main
+java -cp .\lib\derby.jar;.\out\production\Week4 Main
