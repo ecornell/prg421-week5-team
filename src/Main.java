@@ -206,7 +206,7 @@ public class Main {
 
         List<Animal> animalList = new ArrayList<>();
 
-        String createString = "select name, color, swim, fly, vertebrate from animal order by named";
+        String createString = "select name, color, swim, fly, vertebrate from animal order by name";
 
         try (Statement s = conn.createStatement()) {
 
