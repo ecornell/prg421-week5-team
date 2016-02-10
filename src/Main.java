@@ -20,7 +20,9 @@
  * -----> Prompt for single animal to view
  * -----> Read and display info on a selected animal row
  *
- * Input: Derby database ir present
+ * Dependent libraries: lib/derby.jar
+ *
+ * Input: Derby database if present
  * Output: Console
  */
 

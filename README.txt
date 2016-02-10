@@ -24,5 +24,6 @@ Program Flow:
 Input: animals.txt file
 Output: Console
 
+Dependent libraries: lib/derby.jar
 
-To Run: java -cp .\lib\derby.jar;.\out\production\Week4 Main
+To Run: java -cp ./lib/derby.jar:./out/production/Week4 Main
