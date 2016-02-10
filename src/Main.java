@@ -87,7 +87,7 @@ public class Main {
                     ui.displayError("Failed to close database - " + e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage());
                 }
             }
-            
+
         }
 
 
@@ -160,9 +160,14 @@ public class Main {
 
             ui.display(" . . initializing animal table data");
 
-            insertAnimalToDB(new Animal("Ant", "Black", false, false, false));
-            insertAnimalToDB(new Animal("Dog", "Brown", true, false, true));
-            insertAnimalToDB(new Animal("Bird", "Blue", false, true, true));
+            List<Animal> animalList = new ArrayList<>();
+            animalList.add(new Animal("Ant", "Black", false, false, false));
+            animalList.add(new Animal("Dog", "Brown", true, false, true));
+            animalList.add(new Animal("Bird", "Blue", false, true, true));
+
+            for (Animal animal: animalList) {
+                insertAnimalToDB(animal);
+            }
 
         } catch (SQLException e) {
 
