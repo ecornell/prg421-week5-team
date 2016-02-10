@@ -76,7 +76,7 @@ public class Main {
 
         } catch (SQLException e) {
 
-            ui.displayError(e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage());
+            ui.displayError(getSQLException(e));
 
         } finally {
 
@@ -174,7 +174,7 @@ public class Main {
             if (e.getSQLState().equals("X0Y32")) {
                 ui.display(" . . found an existing animal table ");
             } else {
-                ui.displayError(e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage());
+                ui.displayError(getSQLException(e));
             }
         }
 
@@ -196,7 +196,7 @@ public class Main {
             pstmt.execute();
 
         } catch (SQLException e) {
-            ui.displayError(e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage());
+            ui.displayError(getSQLException(e));
         }
 
     }
@@ -206,7 +206,7 @@ public class Main {
 
         List<Animal> animalList = new ArrayList<>();
 
-        String createString = "select name, color, swim, fly, vertebrate from animal";
+        String createString = "select name, color, swim, fly, vertebrate from animal order by named";
 
         try (Statement s = conn.createStatement()) {
 
@@ -228,7 +228,7 @@ public class Main {
             rs.close();
 
         } catch (SQLException e) {
-            ui.displayError(e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage());
+            ui.displayError(getSQLException(e));
         }
 
         return animalList;
@@ -265,11 +265,15 @@ public class Main {
             rs.close();
 
         } catch (SQLException e) {
-            ui.displayError(e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage());
+            ui.displayError(getSQLException(e));
         }
 
         return animal;
 
+    }
+
+    private String getSQLException(SQLException e) {
+        return e.getErrorCode() + " " + e.getSQLState() + " " + e.getMessage();
     }
 
 
