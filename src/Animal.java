@@ -1,7 +1,7 @@
 /**
- * Title:          Week 4 - JDBC
- * Author:         Elijah Cornell
- * Creation Date:  2016-02-09
+ * Title:          Week 5 - Program Improvement IV
+ * Author:         Team B
+ * Creation Date:  2016-02-19
  * Class:          PRG/421 - Roland Morales
  */
 
@@ -13,16 +13,22 @@ public class Animal {
     private boolean canFly;
     private boolean isVertebrate;
 
+    public Animal() {};
+
     public Animal(String name) {
         this.name = name;
     }
 
-    public Animal(String name, String color, boolean canSwin, boolean canFly, boolean isVertebrate) {
+    public Animal(String name, String color, boolean canSwim, boolean canFly, boolean isVertebrate) {
         this.name = name;
         this.color = color;
-        this.canSwim = canSwin;
+        this.canSwim = canSwim;
         this.canFly = canFly;
         this.isVertebrate = isVertebrate;
+    }
+
+    public void setName(String name) {
+        this.name =  name;
     }
 
     public String getName() {

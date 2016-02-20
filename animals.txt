@@ -1,0 +1,26 @@
+Anteater,Brown,true,false,true
+Bat,Black,false,true,true
+Cat,Orange,true,false,true
+Dog,Tan,true,false,true
+Elephant,Grey,true,false,true
+Frog,Green,true,false,true
+Giraffe,Yellow,false,false,true
+Horse,White,true,false,true
+Iguana,Green,true,false,true
+Jellyfish,Clear,true,false,false
+Kangaroo,Brown,false,false,true
+Lammer,Brown,true,false,true
+Monkey,Dark Brown,true,false,true
+Newt,Green,true,false,true
+Octopus,Grey,true,false,false
+Possum,Grey,true,false,true
+Quail,Brown,true,true,true
+Rabbit,White,true,false,true
+Shark,Grey,true,false,true
+Turtle,Green,true,false,true
+Uakari,Brown,true,false,true
+Vulture,Black,false,true,true
+Wombat,Brown,true,false,true
+X-Ray Tetra,Black,true,true,true
+Yak,Brown,true,false,true
+Zebra,Black & White,true,false,true

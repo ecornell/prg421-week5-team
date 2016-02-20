@@ -1,6 +1,7 @@
-Title:          Week 4 - JDBC (Animal Collection)
-Author:         Elijah Cornell
-Creation Date:  2016-02-09
+Title:          Week 5 - Program Improvement IV
+Author:         Team B : ( Elijah Cornell / Eric Landeis / Gordon Doskas / James Rippon /
+                           Joseph Hart / Keith Green / Lance Branford )
+Creation Date:  2016-02-19
 Class:          PRG/421 - Roland Morales
 
 Program Requirements:
@@ -9,21 +10,13 @@ Key parts:
  - Write a list of animal and its characteristics to a database using JDBC
  - Display the characteristics of an animal when that animal is selected.
 
-Must demonstrate the use JDBC
+Team Improvements:
+ - Load animal data from file using multiple threads
 
-Program Flow:
--> Init DB
----> Establishes connection
----> Creates and populates animal table if not present
--> Display Menu
----> Display Characteristics
------> Read and display all rows on animal table
------> Prompt for single animal to view
------> Read and display info on a selected animal row
 
-Input: animals.txt file
+Input: none
 Output: Console
 
 Dependent libraries: lib/derby.jar
 
-To Run: java -cp ./lib/derby.jar:./out/production/Week4 Main
+To Run: java -cp ./lib/derby.jar:./out/production/Week5 Main
