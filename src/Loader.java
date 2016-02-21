@@ -7,9 +7,11 @@
 
 import java.io.*;
 import java.sql.SQLException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
+import java.util.ArrayList;
+import java.util.List;
+// import java.util.concurrent.ExecutorService;
+// import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 public class Loader {
 
@@ -85,4 +87,26 @@ public class Loader {
             }
         }
     }
+
+    // starter
+    public static void updateAge() {
+      ScheduledExecutorService exec = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors());
+
+      exec.scheduleAtFixedRate(new UpdateAge(), 1, 1, TimeUnit.SECONDS);
+    }
+
+    // worker
+    static class UpdateAge implements Runnable {
+      public void run() {
+        // System.out.println("A task!");
+
+        List<Animal> animalList = db.loadAnimals();
+        if (animalList.size() > 0) {
+          for (Animal animal : animalList) {
+            db.updateAge(animal.getName(), animal.getAge() + 1);
+          }
+        }
+      }
+    }
+
 }

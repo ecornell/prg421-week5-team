@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sun Feb 21 00:32:44 PST 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0153-02f5-9d59-0000127b9da8 
+on database directory C:\Users\Gordon\Projects\prg421-week5-team\db\animal with class loader sun.misc.Launcher$AppClassLoader@15db9742 
+Loaded from file:/C:/Users/Gordon/Projects/prg421-week5-team/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_66-b18
+user.dir=C:\Users\Gordon\Projects\prg421-week5-team
+os.name=Windows 8.1
+os.arch=amd64
+os.version=6.3
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
