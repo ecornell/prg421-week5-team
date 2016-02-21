@@ -43,6 +43,7 @@ public class DB {
                     + " color VARCHAR(32) NOT NULL, "
                     + " swim BOOLEAN NOT NULL, "
                     + " fly BOOLEAN NOT NULL, "
+                    + " age INT NOT NULL, "
                     + " vertebrate BOOLEAN NOT NULL) ";
 
             ui.display(" . creating animal table ");
@@ -80,7 +81,7 @@ public class DB {
 
     protected void insertAnimal(Animal animal) throws SQLException {
 
-        String pQuery = "INSERT INTO animal (name, color, swim, fly, vertebrate) VALUES (?, ?, ?, ?, ?)";
+        String pQuery = "INSERT INTO animal (name, color, swim, fly, vertebrate, age) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pstmt = conn.prepareStatement(pQuery)) {
 
@@ -89,6 +90,7 @@ public class DB {
             pstmt.setBoolean(3, animal.canSwim());
             pstmt.setBoolean(4, animal.canFly());
             pstmt.setBoolean(5, animal.isVertebrate());
+            pstmt.setInt(6, 0);
 
             pstmt.execute();
 
@@ -97,6 +99,21 @@ public class DB {
         }
 
     }
+
+    public void updateAge(String name, int age)
+    {
+      String query = "UPDATE animal SET age="+age+" WHERE name='"+name+"'";
+      // System.out.println(query);
+      try (Statement s = conn.createStatement()) {
+        s.executeUpdate(query);
+      } catch (SQLException e) {
+          ui.displayError(getSQLException(e));
+        }
+    }
+    // UPDATE table_name
+    // SET column1=value1,column2=value2,...
+    // WHERE some_column=some_value;
+
 
     public int totalAnimals() {
 
@@ -128,7 +145,7 @@ public class DB {
 
         List<Animal> animalList = new ArrayList<>();
 
-        String createString = "select name, color, swim, fly, vertebrate from animal order by name";
+        String createString = "select name, color, swim, fly, vertebrate, age from animal order by name";
 
         try (Statement s = conn.createStatement()) {
 
@@ -142,6 +159,7 @@ public class DB {
                 a.setCanFly(rs.getBoolean("fly"));
                 a.setCanSwim(rs.getBoolean("swim"));
                 a.setVertebrate(rs.getBoolean("vertebrate"));
+                a.setAge(rs.getInt("age"));
 
                 animalList.add(a);
 
@@ -161,7 +179,7 @@ public class DB {
 
         Animal animal = null;
 
-        String selectAnimal = "select name, color, swim, fly, vertebrate from animal where name = ?";
+        String selectAnimal = "select name, color, swim, fly, vertebrate, age from animal where name = ?";
 
         try (PreparedStatement pstmt = conn.prepareStatement(selectAnimal)) {
 
@@ -177,6 +195,7 @@ public class DB {
                 animal.setCanFly(rs.getBoolean("fly"));
                 animal.setCanSwim(rs.getBoolean("swim"));
                 animal.setVertebrate(rs.getBoolean("vertebrate"));
+                animal.setAge(rs.getInt("age"));
 
             } else {
 

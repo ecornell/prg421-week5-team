@@ -12,6 +12,7 @@ public class Animal {
     private boolean canSwim;
     private boolean canFly;
     private boolean isVertebrate;
+    private int age;
 
     public Animal() {};
 
@@ -19,12 +20,13 @@ public class Animal {
         this.name = name;
     }
 
-    public Animal(String name, String color, boolean canSwim, boolean canFly, boolean isVertebrate) {
+    public Animal(String name, String color, boolean canSwim, boolean canFly, boolean isVertebrate, int age) {
         this.name = name;
         this.color = color;
         this.canSwim = canSwim;
         this.canFly = canFly;
         this.isVertebrate = isVertebrate;
+        this.age = age;
     }
 
     public void setName(String name) {
@@ -67,6 +69,14 @@ public class Animal {
         isVertebrate = vertebrate;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
 
@@ -74,7 +84,8 @@ public class Animal {
                 + " - Color         : " + getColor() + "\n"
                 + " - Can Swim      : " + canSwim() + "\n"
                 + " - Can Fly       : " + canFly() + "\n"
-                + " - Is Vertebrate : " + isVertebrate();
+                + " - Is Vertebrate : " + isVertebrate() + "\n"
+                + " - Age           : " + getAge() + " seconds old";
 
     }
 }

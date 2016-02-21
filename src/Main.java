@@ -13,6 +13,7 @@
 
 import java.sql.*;
 import java.util.List;
+import java.util.concurrent.*;
 
 public class Main {
 
@@ -140,10 +141,29 @@ public class Main {
         ui.display("========================================");
 
         //
-
+        ScheduledFuture future = null;
         try {
 
             db.initDB();
+
+            // Loader.updateAge();
+            // http://stackoverflow.com/a/18590615
+            //
+            ScheduledExecutorService exec = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors());
+
+            future = exec.scheduleAtFixedRate(new Runnable() {
+              public void run() {
+                List<Animal> animalList = db.loadAnimals();
+                if (animalList.size() > 0) {
+                  for (Animal animal : animalList) {
+                    // System.out.print(animal.getName() + " ");
+                    db.updateAge(animal.getName(), animal.getAge() + 1);
+                  }
+                }
+              }
+            }, 1, 1, TimeUnit.SECONDS);
+
+
 
             Main m = new Main();
             m.mainLoop();
@@ -151,6 +171,7 @@ public class Main {
         } catch (SQLException e) {
             ui.displayError(e.getMessage());
         } finally {
+            future.cancel(true);
             db.close();
         }
     }
