@@ -142,6 +142,8 @@ public class Main {
 
         //
         ScheduledFuture future = null;
+        ScheduledExecutorService exec = null;
+
         try {
 
             db.initDB();
@@ -149,7 +151,7 @@ public class Main {
             // Loader.updateAge();
             // http://stackoverflow.com/a/18590615
             //
-            ScheduledExecutorService exec = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors());
+            exec = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors());
 
             future = exec.scheduleAtFixedRate(new Runnable() {
               public void run() {
@@ -163,15 +165,18 @@ public class Main {
               }
             }, 1, 1, TimeUnit.SECONDS);
 
-
-
             Main m = new Main();
             m.mainLoop();
 
         } catch (SQLException e) {
             ui.displayError(e.getMessage());
         } finally {
-            future.cancel(true);
+            if (future != null) {
+                future.cancel(true);
+            }
+            if (exec != null) {
+                exec.shutdown();
+            }
             db.close();
         }
     }
