@@ -12,7 +12,9 @@
  */
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.*;
 
 public class Main {
@@ -36,6 +38,7 @@ public class Main {
             ui.display("2: Display animal details");
             ui.display("3: Load new animals from file");
             ui.display("4: Reset animal catalog");
+            ui.display("5: Fight animals");
             ui.display("X: Exit");
             ui.spacer();
             ui.displayPrompt("Menu selection : ");
@@ -65,6 +68,18 @@ public class Main {
                 ui.displayTitle("Resetting Catalog");
 
                 db.clearAllAnimals();
+
+            } else if (menuSelection.equalsIgnoreCase("5")) {
+
+                ui.displayTitle("Fight Random Animals");
+
+                List<Animal> al1;
+                al1 = db.loadAnimals();
+                int totalAnimals = db.totalAnimals();
+                Random randGen = new Random();
+                int a1 = randGen.nextInt(totalAnimals);
+                int a2 = randGen.nextInt(totalAnimals);
+                fightAnimals(al1.get(a1), al1.get(a2));
 
             }
 
@@ -125,6 +140,63 @@ public class Main {
 
         ui.display(animal.toString());
 
+    }
+
+
+
+
+    public int stringCalc(String s1){
+        int calcTotal = 0;
+        for(int i = 0; i < s1.length(); i++){
+            calcTotal = calcTotal + Character.getNumericValue(s1.charAt(i));
+        }
+        return calcTotal;
+    }
+
+    public int convertBoolToInt(boolean b1){
+        int bInt = 0;
+        if(b1 == true){
+            bInt = 15;
+        }
+        else{
+            bInt = 0;
+        }
+        return bInt;
+    }
+
+    public void fightAnimals(Animal a1, Animal a2){
+        int a1Name = stringCalc(a1.getName());
+        int a1Color = stringCalc(a1.getColor());
+        int a1Swim = convertBoolToInt(a1.canSwim());
+        int a1Fly = convertBoolToInt(a1.canSwim());
+        int a1Skel = convertBoolToInt(a1.isVertebrate());
+
+        int a2Name = stringCalc(a2.getName());
+        int a2Color = stringCalc(a2.getColor());
+        int a2Swim = convertBoolToInt(a2.canSwim());
+        int a2Fly = convertBoolToInt(a2.canSwim());
+        int a2Skel = convertBoolToInt(a2.isVertebrate());
+
+        int a1Score = a1Name + a1Color + a1Swim + a1Fly + a1Skel;
+        int a2Score = a2Name + a2Color + a2Swim + a2Fly + a2Skel;
+
+        if(a1Score > a2Score){
+            System.out.println(a1.getName() + " is Victorous over " + a2.getName());
+            System.out.println("End score " + a1Score + "(" + a1.getName() + ") || "
+                    + a2Score + "(" + a2.getName() + ")");
+        }
+
+        if(a1Score < a2Score){
+            System.out.println(a2.getName() + " is Victorous over " + a1.getName());
+            System.out.println("End score " + a2Score + "(" + a2.getName() + ") || "
+                    + a1Score + "(" + a1.getName() + ")");
+        }
+
+        if(a1Score == a2Score){
+            System.out.println(a1.getName() + " tied with " + a2.getName());
+            System.out.println("End score " + a1Score + "(" + a1.getName() + ") || "
+                    + a2Score + "(" + a2.getName() + ")");
+        }
     }
 
 
